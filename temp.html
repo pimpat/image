@@ -1,0 +1,41 @@
+<html>
+<body>
+
+<form name="vmstat">
+<p>Please select value from vmstat that you want.</p>
+<p>cpu_user: <input type="checkbox" name="data" value="cpu_user"</p>
+<p>cpu_system: <input type="checkbox" name="data" value="cpu_system"</p>
+<p>mem_act: <input type="checkbox" name="data" value="mem_act"</p>
+<p>mem_free: <input type="checkbox" name="data" value="mem_free"</p>
+<p>disks_op: <input type="checkbox" name="data" value="disks_op"</p>
+<p>total_page: <input type="checkbox" name="data" value="total_page"</p>
+<p>page_out: <input type="checkbox" name="data" value="page_out"</p>
+<p>page_freed: <input type="checkbox" name="data" value="page_freed"</p>
+<p>page_in: <input type="checkbox" name="data" value="page_in"</p>
+<br></br>
+<p>Start Time: <input type="text" name="stime" placeholder="Enter start-time here!" size="30" value=""</p>
+<p>Finish Time: <input type="text" name="ftime" placeholder="Enter finish-time here!" size="30" value=""</p>
+<br></br>
+<input type="Submit" onclick="get_check_value(this.form)">
+</form>
+<p>----Your output graph----</p>
+
+<script type="text/javascript">
+<!--
+
+function get_check_value(frm){
+var message = "Your data:\n" 
+for (var i=0; i < frm.data.length; i++){
+	if (frm.data[i].checked){
+		message = message + frm.data[i].value + "\n";
+	}
+}
+message = message + "\n" + "Duration time:\n" + frm.stime.value +"-" + frm.ftime.value;
+alert(message)
+}
+
+//-->
+</script>
+
+</body>
+</html>
