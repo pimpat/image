@@ -12,26 +12,68 @@
 <p>page_out: <input type="checkbox" name="data" value="page_out"</p>
 <p>page_freed: <input type="checkbox" name="data" value="page_freed"</p>
 <p>page_in: <input type="checkbox" name="data" value="page_in"</p>
+
 <br></br>
+Start -> Day: <input type="text" name="day" size="2" value="">
+Month: <input type="text" name="month" size="2" value="">
+Year: <input type="text" name="year" size="5" value="">
+Hours: <input type="text" name="hours" size="2" value="">
+Minutes: <input type="text" name="mins" size="2" value="">
+Secs: <input type="text" name="secs" size="2" value="">
+
+<br></br>
+Finish -> Day: <input type="text" name="day2" size="2" value="">
+Month: <input type="text" name="month2" size="2" value="">
+Year: <input type="text" name="year2" size="5" value="">
+Hours: <input type="text" name="hours2" size="2" value="">
+Minutes: <input type="text" name="mins2" size="2" value="">
+Secs: <input type="text" name="secs2" size="2" value="">
+
+<input type="hidden" name="start_time" value="">
+<input type="hidden" name="finish_time" value="">
+
 <p>Start Time: <input type="text" name="stime" placeholder="Enter start-time here!" size="30" value=""</p>
 <p>Finish Time: <input type="text" name="ftime" placeholder="Enter finish-time here!" size="30" value=""</p>
 <br></br>
 <input type="Submit" onclick="get_check_value(this.form)">
 </form>
 <p>----Your output graph----</p>
-
+<img src="vm.png"/>
 <script type="text/javascript">
 <!--
 
 function get_check_value(frm){
+
+frm.start_time.value = get_time(frm.year.value, frm.month.value, frm.day.value, frm.hours.value, frm.mins.value, frm.secs.value);
+frm.finish_time.value = get_time(frm.year2.value, frm.month2.value, frm.day2.value, frm.hours2.value, frm.mins2.value, frm.secs2.value);
+ 
 var message = "Your data:\n" 
 for (var i=0; i < frm.data.length; i++){
 	if (frm.data[i].checked){
 		message = message + frm.data[i].value + "\n";
 	}
 }
-message = message + "\n" + "Duration time:\n" + frm.stime.value +"-" + frm.ftime.value;
+if(frm.stime.value && frm.ftime.value){ 
+message = message +"\n" +"Your sampling time:\n" +frm.stime.value +"-" +frm.ftime.value;
+}
+else{
+message = message +"\nStart Date: " +frm.day.value +"/" +frm.month.value +"/" +frm.year.value +"\nStart Time: " +frm.hours.value +":" +frm.mins.value +":" +frm.secs.value;
+message = message +"\n\nFinish Date: " +frm.day2.value +"/" +frm.month2.value +"/" +frm.year2.value +"\nFinish Time: " +frm.hours2.value +":" +frm.mins2.value +":" +frm.secs2.value;
+message = message +"\n" +frm.start_time.value +"\n" +frm.finish_time.value;
+}
 alert(message)
+}
+
+function get_time(y, m, d, h, m, s){
+	var mydate = new Date();
+	mydate.setFullYear(y);
+	mydate.setMonth(m);
+	mydate.setDate(d);
+	mydate.setHours(h);
+	mydate.setMinutes(m);
+	mydate.setSeconds(s);
+	//return Math.floor(mydate.getTime()/1000);
+	return (mydate.getTime()/1000);
 }
 
 //-->
